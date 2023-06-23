@@ -25,6 +25,9 @@ python manage.py createsuper
 
 python manage.py runserver
 
+<hr>
+<h1>Proje İle İlgili Bazı Görseller</h1>
+
 ![image](https://github.com/Mr-Halil/iha-kiralama-projesi/assets/89018197/8f7948fd-1893-4723-ae79-fe521e4ac4ec)
 
 ![image](https://github.com/Mr-Halil/iha-kiralama-projesi/assets/89018197/e70621e6-555c-46cd-a1c3-ed82c7d7afa6)
