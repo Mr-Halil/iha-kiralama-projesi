@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block body%}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Kiralama Sayfası</h1>
+                {{ form|crispy }}
+                <input style="margin-top: 10px;" class="btn btn-primary" type="submit" value="Kirala">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

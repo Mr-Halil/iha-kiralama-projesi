@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a href="{% url 'home' %}" class="navbar-brand">İHA KİRALA</a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse1">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse1">
+            <div class="navbar-nav">
+                <a href="{% url 'home' %}" class="nav-item nav-link active">Anasayfa</a>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'post:index' %}" class="nav-item nav-link">İhalar</a>
+                <a href="{% url 'post:create' %}" class="nav-item nav-link">Yeni İha Ekle</a>
+            </div>
+            <form class="d-flex">
+                <input type="text" name="q" class="form-control me-sm-2" placeholder="Arama" value="{{ request.GET.q }}">
+                <button type="submit" action="" class="btn btn-outline-light">Arama</button>
+            </form>
+                {% endif %}
+
+            {% if request.user.is_authenticated %}
+                <div class="navbar-nav ms-auto">
+                    <a href="{% url 'accounts:logout' %}" class="nav-item nav-link active">Çıkış</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</nav>

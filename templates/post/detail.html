@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block body%}
+
+    
+
+    <div class="card mx-auto" style="width: 50rem; margin-bottom: 30px; text-align: center;">
+        <div class="card-body" style="-moz-window-dragging: 50rem;">
+            <img width="600px" src="{{ post.image.url }}" class="img-responsive">
+            <h5 style="margin-top: 10px;" class="card-title">{{post.title}} <small style="font-size: 12px;"> {{post.publishing_date}}</small></h5>
+            <h6>Ekleyen: {{ post.user.username }}</h6>
+
+            <ul class="list-group list-group-flush" style="text-align: left;">
+                <li class="list-group-item"><b>Marka:</b> {{post.marka}}</li>
+                <li class="list-group-item"><b>Model:</b> {{post.model}}</li>
+                <li class="list-group-item"><b>Ağırlık:</b> {{post.agirlik}} Kg</li>
+                <li class="list-group-item"><b>Kategori:</b> {{post.kategori}}</li>
+            </ul>
+
+            <h6>Kiralanma Durumu:</h6>
+            {% if post.kiralayan == "Yok"%}
+                <ul class="list-group list-group-flush" style="text-align: left;">
+                    <li class="list-group-item">Kiralayan: {{post.kiralayan}}</li>
+                </ul>
+            {% else %}
+                <ul class="list-group list-group-flush" style="text-align: left;">
+                    <li class="list-group-item">({{post.baslama_tarih}} - {{post.bitis_tarih}}) Tarihleri Arasında <b>"{{post.kiralayan}}"</b> Tarafından Kiralıktır.</li>
+                </ul>
+            {% endif %}
+
+            <p>
+                {% if not post.kiralayan == request.user.get_full_name and post.kiralayan == "Yok" %}
+                <a href="{{ post.get_kirala_url }}" class="btn btn-primary">Kirala</a>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                        <a href="{{ post.get_update_url }}" class="btn btn-primary">İHA Bilgilerini Güncelle</a>
+                        <a href="{{ post.get_delete_url }}" class="btn btn-danger">İHA Sil</a>
+                {% endif %}
+            </p>
+
+            <p>
+                {% if post.kiralayan == request.user.username %}
+                    <a href="{{ post.get_kirala_url }}" class="btn btn-primary">Kiralama Güncelle</a>
+                    <a href="{{ post.get_kirala_delete_url }}" class="btn btn-danger">Kiralama Sil</a>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
